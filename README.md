@@ -1,4 +1,4 @@
-fortress-of-illusion
+Photon Unity Networking Viking Demo
 ====================
 
-November's One Game a Month with the theme of Change
+This is a demo to test out Photon and GitHub Pages
