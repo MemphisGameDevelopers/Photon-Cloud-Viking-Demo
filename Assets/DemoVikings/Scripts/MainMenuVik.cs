@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MainMenuVik : MonoBehaviour
 {
+    public DungeonGenerator dungeon;
 
     void Awake()
     {
@@ -10,7 +11,7 @@ public class MainMenuVik : MonoBehaviour
 
         //Connect to the main photon server. This is the only IP and port we ever need to set(!)
         if (!PhotonNetwork.connected)
-            PhotonNetwork.ConnectUsingSettings("v1.0"); // version of the game/demo. used to separate older clients from newer ones (e.g. if incompatible)
+            PhotonNetwork.ConnectUsingSettings("v0.0"); // version of the game/demo. used to separate older clients from newer ones (e.g. if incompatible)
 
         //Load name from PlayerPrefs
         PhotonNetwork.playerName = PlayerPrefs.GetString("playerName", "Guest" + Random.Range(1, 9999));
@@ -20,7 +21,7 @@ public class MainMenuVik : MonoBehaviour
 
     }
 
-    private string roomName = "myRoom";
+    private string roomName = "myDungeon";
     private Vector2 scrollPos = Vector2.zero;
 
     void OnGUI()
@@ -53,27 +54,29 @@ public class MainMenuVik : MonoBehaviour
 
         //Join room by title
         GUILayout.BeginHorizontal();
-        GUILayout.Label("JOIN ROOM:", GUILayout.Width(150));
+        GUILayout.Label("JOIN DUNGEON:", GUILayout.Width(150));
         roomName = GUILayout.TextField(roomName);
         if (GUILayout.Button("GO"))
         {
             PhotonNetwork.JoinRoom(roomName);
+            dungeon.GenerateDungeon(roomName.GetHashCode());
         }
         GUILayout.EndHorizontal();
 
         //Create a room (fails if exist!)
         GUILayout.BeginHorizontal();
-        GUILayout.Label("CREATE ROOM:", GUILayout.Width(150));
+        GUILayout.Label("CREATE DUNGEON:", GUILayout.Width(150));
         roomName = GUILayout.TextField(roomName);
         if (GUILayout.Button("GO"))
         {
             PhotonNetwork.CreateRoom(roomName, true, true, 10);
+            dungeon.GenerateDungeon(roomName.GetHashCode());
         }
         GUILayout.EndHorizontal();
 
         //Join random room
         GUILayout.BeginHorizontal();
-        GUILayout.Label("JOIN RANDOM ROOM:", GUILayout.Width(150));
+        GUILayout.Label("JOIN RANDOM DUNGEON:", GUILayout.Width(150));
         if (PhotonNetwork.GetRoomList().Length == 0)
         {
             GUILayout.Label("..no games available...");
@@ -88,7 +91,7 @@ public class MainMenuVik : MonoBehaviour
         GUILayout.EndHorizontal();
 
         GUILayout.Space(30);
-        GUILayout.Label("ROOM LISTING:");
+        GUILayout.Label("DUNGEON LISTING:");
         if (PhotonNetwork.GetRoomList().Length == 0)
         {
             GUILayout.Label("..no games available..");

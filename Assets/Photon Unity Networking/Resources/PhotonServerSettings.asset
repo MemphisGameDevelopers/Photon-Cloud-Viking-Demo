@@ -14,7 +14,7 @@ MonoBehaviour:
   HostType: 1
   ServerAddress: app-us.exitgamescloud.com
   ServerPort: 5055
-  AppID: f4432d99-9866-49b4-af0e-83501c62f173
+  AppID: 12065ec4-94e9-4fbb-8f6d-27f1961b4e73
   RpcList:
   - SendChatMessage
   - InstantiateRpc

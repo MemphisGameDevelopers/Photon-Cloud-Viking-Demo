@@ -525,7 +525,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.5009575, y: 1.02845776, z: 30.4770279}
+  m_LocalPosition: {x: 3.3416729, y: 2, z: 49.1859894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400060}
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   synchronization: 2
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
-  instantiationId: 0
+  instantiationId: -1
 --- !u!1002 &11400009
 EditorExtensionImpl:
   serializedVersion: 6

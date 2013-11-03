@@ -6,6 +6,7 @@ public class GameManagerVik : Photon.MonoBehaviour {
     // this is a object name (must be in any Resources folder) of the prefab to spawn as player avatar.
     // read the documentation for info how to spawn dynamically loaded game objects at runtime (not using Resources folders)
     public string playerPrefabName = "Charprefab";
+    public DungeonGenerator dungeon;
 
     void OnJoinedRoom()
     {
@@ -28,7 +29,7 @@ public class GameManagerVik : Photon.MonoBehaviour {
     {
         Camera.main.farClipPlane = 1000; //Main menu set this to 0.4 for a nicer BG    
 
-        //prepare instantiation data for the viking: Randomly diable the axe and/or shield
+        //prepare instantiation data for the viking: Randomly disable the axe and/or shield
         bool[] enabledRenderers = new bool[2];
         enabledRenderers[0] = Random.Range(0,2)==0;//Axe
         enabledRenderers[1] = Random.Range(0, 2) == 0; ;//Shield
@@ -37,7 +38,7 @@ public class GameManagerVik : Photon.MonoBehaviour {
         objs[0] = enabledRenderers;
 
         // Spawn our local player
-        PhotonNetwork.Instantiate(this.playerPrefabName, transform.position, Quaternion.identity, 0, objs);
+        PhotonNetwork.Instantiate(this.playerPrefabName, dungeon.PlacePlayer(), Quaternion.identity, 0, objs);
     }
 
     void OnGUI()
